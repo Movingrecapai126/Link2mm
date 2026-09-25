@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      LIBRETRANSLATE_URL: http://libretranslate:5000
+    depends_on: [libretranslate]
+    volumes: ["./audio:/app/audio","./work:/app/work"]
+  libretranslate:
+    image: libretranslate/libretranslate:latest
+    environment:
+      LT_LOAD_ONLY: en,my
+      LT_UPDATE_MODELS: "true"
+    restart: unless-stopped
