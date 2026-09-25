@@ -1,17 +1,22 @@
-Link2MM — No-Cookie YouTube Mode
+Link2MM — Piped No-Cookie Mode
 
-ဒီ version မှာ YouTube account cookies, login, PO Token, API key မလိုပါ။
+ဒီ version က yt-dlp နဲ့ YouTube ကို Render server က တိုက်ရိုက်မဆွဲပါ။
+Piped ရဲ့ unauthenticated /streams/:videoId API ကို သုံးပြီး public Piped instances
+အများကြီးကို အလိုအလျောက် စမ်းပါတယ်။
 
-YouTube download အတွက် client ၃ မျိုးကို အလိုအလျောက် စမ်းမယ်:
-1. web_embedded
-2. web_safari
-3. tv
+လိုအပ်ချက်:
+- YouTube login မလို
+- YouTube cookies မလို
+- PO Token မလို
+- API key မလို
 
-တစ်မျိုးအောင်ရင် အဲဒီ video ကို download → English on-screen OCR → Myanmar translation → Myanmar MP3 လုပ်ပေးမယ်။
+Flow:
+YouTube link -> Piped stream -> FFmpeg -> English on-screen OCR -> Myanmar translation -> Myanmar MP3
 
-အရေးကြီး:
-YouTube က server/IP အလိုက် anti-bot/PO-token စည်းမျဉ်းတွေ ပြောင်းနေတဲ့အတွက်
-ဒီ no-cookie mode က video တိုင်း 100% အလုပ်လုပ်မယ်လို့ မအာမခံနိုင်ပါ။
-အထူးသဖြင့် server IP ကို YouTube က block လုပ်ထားရင် ဒီနည်းလည်း မရနိုင်ပါ။
+Piped docs:
+https://docs.piped.video/docs/api-documentation/
 
-ဒီ version ကို စမ်းပြီး မရသေးရင် error screenshot ပို့ပါ။
+သတိ:
+Public Piped instances တွေက availability ပြောင်းနိုင်ပါတယ်။ ဒီ app က instance
+အများကြီးကို fallback လုပ်ထားပါတယ်။ Piped ကိုယ်တိုင်လည်း public instance list ကို
+dynamic စစ်ဆေးဖို့ အကြံပြုထားပါတယ်။
