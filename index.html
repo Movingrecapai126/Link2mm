@@ -1,0 +1,19 @@
+<!doctype html><html lang="my"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Link2MM</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f4f6fa;font-family:Arial,sans-serif;color:#172033}.box{max-width:760px;margin:25px auto;padding:22px;background:#fff;border-radius:22px;box-shadow:0 8px 30px #0001}
+h1{text-align:center;margin-bottom:5px}.sub{text-align:center;color:#777}label{font-weight:700;display:block;margin-top:18px}input,textarea,select{width:100%;padding:14px;border:1px solid #d8dce5;border-radius:12px;font-size:16px;margin-top:8px}textarea{height:260px}
+button{padding:12px 17px;border:0;border-radius:11px;font-weight:700;margin:6px 3px;cursor:pointer}.go{width:100%;background:#111;color:#fff}.status{text-align:center;min-height:25px;color:#666;margin-top:10px}audio{width:100%;margin-top:8px}.row{display:flex;gap:5px;flex-wrap:wrap}.hint{font-size:13px;color:#777;line-height:1.5}
+</style><div class=box><h1>🎬 Link2MM</h1><div class=sub>YouTube → English OCR → မြန်မာစာ → MP3</div>
+<label>YouTube Link</label><input id=url placeholder="https://youtube.com/watch?v=...">
+<label>Voice</label><select id=voice><option value="my-MM-NilarNeural">Nilar — Female</option><option value="my-MM-ThihaNeural">Thiha — Male</option></select>
+<button class=go onclick=go()>🚀 Generate</button><div id=s class=status></div>
+<label>🇲🇲 မြန်မာစာ</label><textarea id=txt></textarea><div class=row><button onclick=copy()>📋 Copy</button><button onclick=txtdl()>📥 TXT</button></div>
+<label>🔊 MP3</label><audio id=a controls></audio><div class=row><button onclick=mp3dl()>⬇ Download MP3</button></div>
+<p class=hint>Video ထဲမှာ စာတန်းက အောက်ပိုင်းမှာ ထင်ရှားနေတဲ့အခါ OCR ပိုကောင်းပါတယ်။ Video တစ်စက္ကန့်ကို frame တစ်ခုစစ်ပေးပါတယ်။ ကိုယ်ပိုင်/ခွင့်ပြုချက်ရှိတဲ့ video တွေကိုပဲ process လုပ်ပါ။</p>
+</div><script>
+let au='';
+async function go(){if(!url.value.trim())return s.textContent='YouTube link ထည့်ပါ။';s.textContent='⏳ Video → OCR → Translate → MP3 လုပ်နေပါတယ်...';try{let r=await fetch('/api/process',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({youtube_url:url.value.trim(),voice:voice.value})}),d=await r.json();if(!r.ok)throw Error(d.detail||'Error');txt.value=d.text;au=d.audio_url;a.src=au;s.textContent='✅ ပြီးပါပြီ';}catch(e){s.textContent='❌ '+e.message}}
+function copy(){navigator.clipboard.writeText(txt.value)}
+function txtdl(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt.value],{type:'text/plain;charset=utf-8'}));a.download='myanmar-recap.txt';a.click()}
+function mp3dl(){if(!au)return alert('MP3 မရှိသေးပါ');let a=document.createElement('a');a.href=au;a.download='myanmar-voice.mp3';a.click()}
+</script>

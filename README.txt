@@ -1,24 +1,23 @@
-LINK2MM READY
-=============
-This is the most complete package in this chat.
+LINK2MM — RENDER READY
 
-What it does:
-YouTube URL -> download -> OCR English text in lower half of frames -> English-to-Myanmar translation -> Burmese MP3.
-Voice choices:
-- my-MM-NilarNeural (female)
-- my-MM-ThihaNeural (male)
+Flow:
+YouTube URL -> download -> OCR English text visible in video -> Myanmar translation -> Myanmar MP3
 
-The project uses yt-dlp, FFmpeg, Tesseract OCR, LibreTranslate and edge-tts.
-yt-dlp currently notes that full YouTube support can require yt-dlp-ejs plus a supported JavaScript runtime; some YouTube videos may also require additional access tokens.
+Files:
+- server.py
+- index.html
+- requirements.txt
+- Dockerfile
 
-LOCAL RUN (Docker):
-1. Install Docker Desktop.
-2. Extract this ZIP.
-3. In the folder run: docker compose up --build
-4. Open http://localhost:8000
+Deploy:
+1. Create a Render Web Service from this GitHub repository.
+2. Runtime/Language: Docker
+3. Branch: main
+4. Plan: Free (for testing)
+5. Create Web Service.
 
-ONLINE:
-A public URL still requires deploying this Docker project to a hosting provider.
-I cannot create an external hosting account or press the final deploy button from this chat, so the last deployment action must be done from your account.
-
-Only process videos you have permission to download/process.
+Notes:
+- This reads English text visibly embedded in video frames; it does not use YouTube subtitle tracks.
+- OCR checks the lower half of the video at about 1 frame/second.
+- Free hosting can sleep when idle and has usage limits.
+- Only process videos you have permission to download/process.
