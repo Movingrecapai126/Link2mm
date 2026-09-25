@@ -1,23 +1,9 @@
-LINK2MM — RENDER READY
+LINK2MM FIX
 
-Flow:
-YouTube URL -> download -> OCR English text visible in video -> Myanmar translation -> Myanmar MP3
+Fixes the current YouTube extraction error by installing a supported Deno JavaScript runtime and yt-dlp's default EJS components.
 
-Files:
-- server.py
-- index.html
-- requirements.txt
-- Dockerfile
+Files: index.html, server.py, requirements.txt, Dockerfile, README.txt
 
-Deploy:
-1. Create a Render Web Service from this GitHub repository.
-2. Runtime/Language: Docker
-3. Branch: main
-4. Plan: Free (for testing)
-5. Create Web Service.
+After replacing these files in GitHub, Render should automatically start a new deployment.
 
-Notes:
-- This reads English text visibly embedded in video frames; it does not use YouTube subtitle tracks.
-- OCR checks the lower half of the video at about 1 frame/second.
-- Free hosting can sleep when idle and has usage limits.
-- Only process videos you have permission to download/process.
+Note: YouTube can still block automated downloads with 403/bot checks on some videos. This update fixes the missing-JavaScript-runtime problem first; if YouTube still returns 403, the next step is a different extraction/authentication approach.

@@ -110,6 +110,7 @@ def process(req: Req):
     try:
         run([
             "yt-dlp", "--no-playlist",
+            "--js-runtimes", "deno",
             "-f", "bv*[height<=720]+ba/b[height<=720]/b",
             "--merge-output-format", "mp4",
             "-o", str(video), req.youtube_url
