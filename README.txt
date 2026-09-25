@@ -1,22 +1,26 @@
-Link2MM — Piped No-Cookie Mode
+Link2MM — Stable YouTube mode
 
-ဒီ version က yt-dlp နဲ့ YouTube ကို Render server က တိုက်ရိုက်မဆွဲပါ။
-Piped ရဲ့ unauthenticated /streams/:videoId API ကို သုံးပြီး public Piped instances
-အများကြီးကို အလိုအလျောက် စမ်းပါတယ်။
+ဒီ version က အရင် No-Cookie/Piped versions ထက် YouTube အတွက် ပိုပြည့်စုံတဲ့ setup ဖြစ်ပါတယ်။
 
-လိုအပ်ချက်:
-- YouTube login မလို
-- YouTube cookies မလို
-- PO Token မလို
-- API key မလို
+ပါဝင်တာ:
+- yt-dlp + EJS JavaScript runtime (Node 22)
+- official bgutil-ytdlp-pot-provider 2.0.0
+- per-video PO token ကို server ထဲမှာ အလိုအလျောက် generate လုပ်ခြင်း
+- YouTube cookies / login / API key မလို
+- mweb -> web_safari -> tv -> android_vr fallback
+- English on-screen OCR
+- English -> Myanmar translation
+- Myanmar TTS MP3
 
-Flow:
-YouTube link -> Piped stream -> FFmpeg -> English on-screen OCR -> Myanmar translation -> Myanmar MP3
-
-Piped docs:
-https://docs.piped.video/docs/api-documentation/
+yt-dlp ရဲ့ 2026 PO Token Guide က automated PO-token provider ကို အကြံပြုထားပြီး
+bgutil-ytdlp-pot-provider ကို featured provider အဖြစ် ဖော်ပြထားပါတယ်။
 
 သတိ:
-Public Piped instances တွေက availability ပြောင်းနိုင်ပါတယ်။ ဒီ app က instance
-အများကြီးကို fallback လုပ်ထားပါတယ်။ Piped ကိုယ်တိုင်လည်း public instance list ကို
-dynamic စစ်ဆေးဖို့ အကြံပြုထားပါတယ်။
+PO token provider တစ်ခုတည်းနဲ့ 403/bot check ကို 100% အာမခံမရပါ။
+YouTube က server IP ကို တိုက်ရိုက် block ထားရင် hosting provider/IP ပြောင်းရန်
+လိုနိုင်ပါတယ်။ ဒါပေမယ့် အခု setup က YouTube download အတွက် လက်ရှိ
+yt-dlp recommendation နဲ့ အနီးဆုံးဖြစ်ပါတယ်။
+
+Source:
+https://github.com/Brainicism/bgutil-ytdlp-pot-provider
+https://github.com/yt-dlp/yt-dlp/wiki/Po-Token-Guide

@@ -3,3 +3,5 @@ uvicorn[standard]
 pydantic
 requests
 edge-tts
+yt-dlp[default]>=2025.05.22
+bgutil-ytdlp-pot-provider==2.0.0
